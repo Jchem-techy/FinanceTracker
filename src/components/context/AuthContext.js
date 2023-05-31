@@ -9,7 +9,9 @@ export function authReducerFunc(state, action) {
   if (action.type === 'LOGOUT') {
     return { ...state, user: null };
   }
-
+  if (action.type === 'AUTH_IS_READY') {
+    return { ...state, user: action.payload, authIsReady: true };
+  }
   return state;
 }
 
@@ -22,6 +24,7 @@ export function AuthContextProvider({ children }) {
   console.log('AuthContextState:', state);
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
+      console.log(user);
       dispatch({ type: 'AUTH_IS_READY', payload: user });
       unsub();
     });
