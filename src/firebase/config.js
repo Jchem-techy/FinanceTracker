@@ -18,7 +18,7 @@ const app = initializeApp(firebaseConfig);
 // initialize services
 const db = getFirestore(app); // firestore
 // collection refrence
-const colRef = collection(db, 'transactions');
+let colRef = collection(db, 'transactions');
 const auth = getAuth(); // auth
 
 // firebase timestamps
