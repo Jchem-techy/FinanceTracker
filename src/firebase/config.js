@@ -2,7 +2,8 @@ import firebase from 'firebase/app';
 // firestore packages
 import 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, collection, Timestamp } from 'firebase/firestore';
+
 // Authentication packages
 import { getAuth } from 'firebase/auth';
 const firebaseConfig = {
@@ -13,8 +14,13 @@ const firebaseConfig = {
   messagingSenderId: '79079327750',
   appId: '1:79079327750:web:9de714c9dc81a80ea65b87',
 };
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 // initialize services
-const db = getFirestore(); // firestore
-const auth = getAuth();
-export { db, auth };
+const db = getFirestore(app); // firestore
+// collection refrence
+const colRef = collection(db, 'transactions');
+const auth = getAuth(); // auth
+
+// firebase timestamps
+const timestamp = Timestamp.fromDate(new Date());
+export { db, auth, colRef, timestamp };
