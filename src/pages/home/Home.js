@@ -1,6 +1,14 @@
 import React from 'react';
 // styles
-import styles from './Home.module.css';
+import './Home.css';
+import TransactionForm from './TransactionForm';
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div className='container'>
+      <div className='content'>transcation list</div>
+      <div className='sidebar'>
+        <TransactionForm />
+      </div>
+    </div>
+  );
 }
