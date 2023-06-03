@@ -2,13 +2,15 @@ import React, { useEffect } from 'react';
 import { db } from '../firebase/config';
 import { useState } from 'react';
 import { colRef } from '../firebase/config';
-import { docs, onSnapshot, query } from 'firebase/firestore';
+import { docs, onSnapshot, query, where } from 'firebase/firestore';
+import { useAuthContext } from './useAuthContext';
 function useCollection(collection) {
+  const { user } = useAuthContext();
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const q = query(colRef);
+    const q = query(colRef, where('uid', '==', user.uid));
     const unsub = onSnapshot(q, (querySnapshot) => {
       let results = [];
       querySnapshot.docs.forEach((doc) => {
