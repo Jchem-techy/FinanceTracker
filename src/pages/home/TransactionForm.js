@@ -15,11 +15,11 @@ export default function TransactionForm({ uid }) {
     });
   }
   useEffect(() => {
-    if (response.success) {
+    if (response.sucess) {
       setName('');
       setAmount('');
     }
-  }, [response.success]);
+  }, [response.sucess]);
   return (
     <>
       <form onSubmit={handleSubmit}>
