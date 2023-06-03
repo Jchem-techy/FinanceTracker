@@ -8,7 +8,6 @@ import './Home.css';
 import TransactionForm from './TransactionForm';
 export default function Home() {
   const { documents, error } = useCollection(colRef);
-  console.log(documents);
   const { user } = useAuthContext();
   return (
     <div className='container'>
